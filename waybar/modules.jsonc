@@ -1,5 +1,10 @@
-// Modules configuration
 {
+    "launcher": {
+        "interval": "once",
+        "format": "󰣇",
+        "on-click": "wofi --show drun --columns 2 -I",
+        "tool-tip": false
+    },
     "cpu": {
         "format": "CPU:{usage}%",
         "tooltip": true
@@ -20,9 +25,7 @@
         }
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "  ({signalStrength}%)",
-        "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{essid}",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
@@ -33,7 +36,7 @@
         "tooltip": false
     },
     "custom/power": {
-        "format": "⏻ ",
+        "format": " ",
         "tooltip": false,
         "on-click": "wlogout"
     }
