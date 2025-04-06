@@ -1,0 +1,23 @@
+* {
+  font-size: 20px
+}
+
+#waybar {
+  background: transparent;  
+}
+#waybar * {
+  background: transparent !important;  
+  box-shadow: none !important; 
+}
+#waybar .module {
+  background: transparent !important; 
+}
+#waybar .launcher {
+    padding-left: 10px;  
+    padding-right: 10px;
+}
+#waybar .custom-power {
+    padding-left: 10px;  
+    padding-right: 10px;
+}
+
