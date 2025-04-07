@@ -1,6 +1,6 @@
 # Arch Linux Styling Configs & Files
 
-#### All of files and configs that I use for styling my setup
+#### All of the files and configs that I use for styling my setup
 
 ![hyprshot](https://github.com/user-attachments/assets/d44a67a7-28d1-4dde-80d1-667f65d361a2)
 
