@@ -1,5 +1,5 @@
 {
-    "launcher": {
+    "custom/launcher": {
         "interval": "once",
         "format": "󰣇",
         "on-click": "wofi --show drun --columns 2 -I",

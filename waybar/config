@@ -1,12 +1,12 @@
 {
     "layer": "top", 
     "position": "top", 
-    "height": 35, 
+    "height": 45, 
     "spacing": 10, 
     
     "include": ["~/.config/waybar/modules.jsonc"],
 
-    "modules-left": ["launcher", "cpu", "memory", "hyprland/window"],
+    "modules-left": ["custom/launcher", "cpu", "memory", "hyprland/window"],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["network", "clock", "tray", "custom/power"]
 }
