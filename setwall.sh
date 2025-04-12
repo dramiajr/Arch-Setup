@@ -8,7 +8,7 @@ fi
 
 WALLPAPER=$(realpath "$1")
 
-# Check if image exsist
+# Check if image exists
 if [ ! -f "$WALLPAPER" ]; then
     echo "File not found: $WALLPAPER"
     exit 1
@@ -18,34 +18,33 @@ fi
 # Set SDDM Background:
 ######################
 
-# Setting proper theme and respective paths
 SDDM_THEME="Sugar-Candy"
-THEME_DIR="/usr/share/sddm/themes/$SDDM_THEME/Backgounds"
+THEME_DIR="/usr/share/sddm/themes/$SDDM_THEME/Backgrounds"
 LOGIN_IMAGE="login_image.jpg"
 BACKGROUNDS_PATH="$THEME_DIR/$LOGIN_IMAGE"
 CONF_FILE="/usr/share/sddm/themes/$SDDM_THEME/theme.conf"
 
 if [ -d "$THEME_DIR" ]; then
     sudo cp "$WALLPAPER" "$BACKGROUNDS_PATH"
-    if [ -f "CONF_FILE" ]; then
-        sed -i "s|^Backgrounds= .*|Background=$BACKGROUNDS_PATH|" "CONF_FILE"
+    if [ -f "$CONF_FILE" ]; then
+        sudo sed -i "s|^Background *= *.*|Background=$BACKGROUNDS_PATH|" "$CONF_FILE"
         echo "Login Image Changed"
     else
         echo "File not found at $CONF_FILE"
     fi
 else
-    echo "SDDM theme directory not found: "$THEME_DIR"
+    echo "SDDM theme directory not found: $THEME_DIR"
 fi
 
 ######################
 # Set Hyprpaper Image:
 ######################
 
-HYPRPAPER_CONF="~/.config/hypr/hyprpaper.conf"
+HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 
 if [ -f "$HYPRPAPER_CONF" ]; then
-    sed -i "s|^preload = .*|preload = $WALLPAPER|" "HYPRPAPER_CONF"
-    sed	-i "s|^wallpaper = .*|wallpaper = , $WALLPAPER|" "HYPRPAPER_CONF"
+    sed -i "s|^preload *= *.*|preload = $WALLPAPER|" "$HYPRPAPER_CONF"
+    sed -i "s|^wallpaper *= *.*|wallpaper = , $WALLPAPER|" "$HYPRPAPER_CONF"
     killall hyprpaper 2>/dev/null
     hyprpaper &
     echo "Wallpaper Changed"
@@ -57,10 +56,10 @@ fi
 # Set Hyprlock Image:
 #####################
 
-HYPRLOCK_CONF="~/.config/hypr/hyprlock.conf"
+HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
 
 if [ -f "$HYPRLOCK_CONF" ]; then
-    sed -i "s|^path = .*|path = $WALLPAPER|" "HYPRLOCK_CONF"
+    sed -i "s|^path *= *.*|path = $WALLPAPER|" "$HYPRLOCK_CONF"
     echo "Hyprlock Image Changed"
 else
     echo "Hyprlock config not found at $HYPRLOCK_CONF"
