@@ -6,34 +6,35 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+# Convert to realpath
 WALLPAPER=$(realpath "$1")
 
-# Check if image exists
+# Check if image exsist
 if [ ! -f "$WALLPAPER" ]; then
     echo "File not found: $WALLPAPER"
     exit 1
 fi
 
-######################
-# Set SDDM Background:
-######################
+############################
+# Set SDDM Background Image:
+############################
 
-SDDM_THEME="Sugar-Candy"
-THEME_DIR="/usr/share/sddm/themes/$SDDM_THEME/Backgrounds"
+# Set to theme and respective path used
+THEME_DIR="/usr/share/sddm/themes/Sugar-Candy/Backgrounds"
 LOGIN_IMAGE="login_image.jpg"
-BACKGROUNDS_PATH="$THEME_DIR/$LOGIN_IMAGE"
-CONF_FILE="/usr/share/sddm/themes/$SDDM_THEME/theme.conf"
+BACKGROUNDS_PATH="/usr/share/sddm/themes/Sugar-Candy/Backgrounds/$LOGIN_IMAGE"
+CONF_FILE="/usr/share/sddm/themes/Sugar-Candy/theme.conf"
 
 if [ -d "$THEME_DIR" ]; then
-    sudo cp "$WALLPAPER" "$BACKGROUNDS_PATH"
+    sudo cp $WALLPAPER $BACKGROUNDS_PATH
     if [ -f "$CONF_FILE" ]; then
-        sudo sed -i "s|^Background *= *.*|Background=$BACKGROUNDS_PATH|" "$CONF_FILE"
+        sed -i 's|^Background="Backgrounds/"|Background="Backgrounds/login_image.jpg"|' $CONF_FILE
         echo "Login Image Changed"
     else
-        echo "File not found at $CONF_FILE"
+        echo "Configuration File Not Found: $CONF_FILE"
     fi
-else
-    echo "SDDM theme directory not found: $THEME_DIR"
+else 
+    echo "Theme Directory Not Found: $THEME_DIR"
 fi
 
 ######################
@@ -43,13 +44,15 @@ fi
 HYPRPAPER_CONF="$HOME/.config/hypr/hyprpaper.conf"
 
 if [ -f "$HYPRPAPER_CONF" ]; then
-    sed -i "s|^preload *= *.*|preload = $WALLPAPER|" "$HYPRPAPER_CONF"
-    sed -i "s|^wallpaper *= *.*|wallpaper = , $WALLPAPER|" "$HYPRPAPER_CONF"
+    sed -i "s|^preload *= .*|preload = $WALLPAPER|" $HYPRPAPER_CONF
+    sed -i "s|^wallpaper = .*|wallpaper = , $WALLPAPER|" $HYPRPAPER_CONF
+    
+    # Kill and Reload Hyprpaper Instance
     killall hyprpaper 2>/dev/null
-    hyprpaper &
+    hyprpaper >/dev/null &
     echo "Wallpaper Changed"
 else
-    echo "Hyprpaper config not found at $HYPRPAPER_CONF"
+    echo "Hyprpaper Config Not Found: $HYPRPAPER_CONF" 
 fi
 
 #####################
@@ -59,12 +62,12 @@ fi
 HYPRLOCK_CONF="$HOME/.config/hypr/hyprlock.conf"
 
 if [ -f "$HYPRLOCK_CONF" ]; then
-    sed -i "s|^path *= *.*|path = $WALLPAPER|" "$HYPRLOCK_CONF"
-    echo "Hyprlock Image Changed"
+    sed -i "/background {/,/}/s|^[[:space:]]*path = .*|   path = $WALLPAPER|" $HYPRLOCK_CONF
+    echo "Lockscreen Changed"
 else
-    echo "Hyprlock config not found at $HYPRLOCK_CONF"
+    echo "Hyprlock Config Not Found: $HYPRLOCK_CONF"
 fi
 
-###########
-# THE END #
-###########
+############
+# Finished #
+############
