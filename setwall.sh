@@ -6,7 +6,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# Convert to realpath
+# Convert to absolute file path
 WALLPAPER=$(realpath "$1")
 
 # Check if image exsist
