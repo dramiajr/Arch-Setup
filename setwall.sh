@@ -1,5 +1,11 @@
 #!/bin/bash
 
+############################################ IMPORTANT: #########################################################
+# 1. Make sure file is executable before trying to run ( chmod +x setwall.sh )
+# 2. If you don't have write permission for file add "sudo" to "sed" command or change file ownership to yourself                          
+# 3. script is intended to run as "./setwall.sh /PathTo/Image.jpg" or whatever image extension you are using 
+##################################################################################################################
+
 # Check for provided image path
 if [ -z "$1" ]; then
     echo "Add an image: $0"
