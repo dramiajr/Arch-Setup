@@ -4,7 +4,13 @@
 
 
 ## Desktop Preview
-![desktop](https://github.com/user-attachments/assets/03f5f565-9791-4cb2-8929-327414cc713c)
+![2025-04-14-143432_hyprshot](https://github.com/user-attachments/assets/b09b3378-8c09-44db-a771-7caa6c996e3e)
+
+![2025-04-14-143450_hyprshot](https://github.com/user-attachments/assets/d0099d43-766f-40c0-9e0a-e67234cef93d)
+
+![2025-04-14-143518_hyprshot](https://github.com/user-attachments/assets/3f8ae3b8-ac49-4329-8f57-8b6f695e150a)
+
+![2025-04-14-144007_hyprshot](https://github.com/user-attachments/assets/aebf509c-497f-455b-b83d-209365f82d0c)
 
 ## Configs Included
 - [Hyprland Ecosystem](https://github.com/dramiajr/Arch-Setup/tree/main/hypr) - Core Wayland setup and styling:<br>
