@@ -1,15 +1,51 @@
+@import url("$HOME/.cache/wal/colors-waybar.css");
+
 * {
-    font-size: 20px;
-    font-family: "JetBrainsMono Nerd Font", "Material Design Icons", sans-serif;
-    color: black;
-  }
-  #waybar {
-    background: transparent;  
-  }
-  #waybar .custom-launcher {
-      padding-left: 20px;  
-  }
-  #waybar .custom-power {
-      padding-right: 20px;
-  }
+  font-size: 20px;
+  font-family: "JetBrainsMono Nerd Font", "Material Design Icons", sans-serif;
+  color: @foreground;
+}
+
+#waybar {
+  background: @background;
+}
+
+#custom-launcher {
+  padding-left: 10px;
+  margin-right: 7px;
+}
+
+#cpu {
+  margin-right: 7px;
+}
+
+#memory {
+  margin-right: 7px;
+}
+
+#hyprland-workspaces {
+  color: @color4;
+}
+
+#network {
+  margin-left: 7px;
+}
+
+#clock {
+  margin-left: 7px;
+}
+
+#tray {
+  margin-left: 7px;
+}
+
+#custom-power {
+  padding-right: 7px;
+  margin-left: 10px;
+}
+
+
+
+
+
   
