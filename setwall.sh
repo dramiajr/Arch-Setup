@@ -74,6 +74,33 @@ else
     echo "Hyprlock Config Not Found: $HYPRLOCK_CONF"
 fi
 
+####################
+# Pywal Integration:
+####################
+
+# Generate color theme
+wal -i $WALLPAPER
+
+#################
+# Apply to Kitty:
+#################
+
+# Reload Kitty color scheme
+if pgrep -x kitty > /dev/null; then
+    # IMPORTANT: Make sure ~/.cache/wal/colors-kitty.conf 
+    # is already added to your ~/.config/kitty/kitty.conf
+    kitty @ set-colors --all ~/.cache/wal/colors-kitty.conf
+    echo "Terminal Colors Updated"
+fi
+
+##################
+# Apply to Waybar:
+##################
+
+# Set to respective paths
+pkill waybar && hyprctl dispatch exec "waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css" > /dev/null 2>&1
+echo "Waybar Reloaded"
+
 ############
 # Finished #
 ############
