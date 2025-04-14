@@ -6,7 +6,7 @@
     
     "include": ["~/.config/waybar/modules.jsonc"],
 
-    "modules-left": ["custom/launcher", "cpu", "memory", "hyprland/window"],
+    "modules-left": ["custom/launcher", "cpu", "memory"],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["network", "clock", "tray", "custom/power"]
 }
