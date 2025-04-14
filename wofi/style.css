@@ -1,0 +1,8 @@
+@import url("$HOME/.cache/wal/colors-waybar.css");
+
+* {
+    background-color: @color4;
+    color: @color9;
+}
+
+
