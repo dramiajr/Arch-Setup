@@ -1,0 +1,64 @@
+@import url("file:///home/david/.cache/wal/colors-waybar.css");
+@import "https://www.nerdfonts.com/assets/css/webfont.css"
+
+* {
+	font-family: "JetBrainsMonoNL Nerd Font";
+	font-size: 32px;
+	background-image: none;
+	box-shadow: none;
+}
+
+window {
+	background-color: rgba(12, 12, 12, 0.1);
+}
+
+button {
+    color: @foreground;
+	font-size: 20px;
+
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+
+	border-style: solid;
+	background-color: @background;
+	border: 3px solid @background;
+
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+button:focus, button:active, button:hover {
+	color: @color7;
+	background-color: rgba(12, 12, 12, 0.5);
+	border: 3px solid @color5;
+}
+
+#lock {
+    background-color: @foreground;
+	color: @color4;
+}
+
+#logout {
+    background-color: @background;
+	color: @color4;
+}
+
+#suspend {
+    background-color: @background;
+	color: @color4;
+}
+
+#hibernate {
+    background-color: @background;
+	color: @color4;
+}
+
+#shutdown {
+    background-color: @background;
+	color: @color4;
+}
+
+#reboot {
+    background-color: @background;
+	color: @color4;
+}
