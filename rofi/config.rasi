@@ -32,10 +32,19 @@ inputbar {
     children: [ "prompt", "entry" ];
 }
 
-prompt {
-    @textbox: {Search:};
-}
-
 imagebox {
     background-image: url("image.jpg");
+}
+
+prompt {
+    enabled: false;
+}
+
+entry, element-text {
+    text-color: @foreground;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 1.5em;
 }
