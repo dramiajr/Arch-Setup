@@ -1,9 +1,9 @@
-@import url("$HOME/.cache/wal/colors-waybar.css");
+@import url("/home/david/.cache/wal/colors-waybar.css");
 
 * {
   font-size: 20px;
   font-family: "JetBrainsMono Nerd Font", "Material Design Icons", sans-serif;
-  color: @foreground;
+  color: @color6;
 }
 
 #waybar {
@@ -24,7 +24,7 @@
 }
 
 #hyprland-workspaces {
-  color: @color4;
+  color: @color6;
 }
 
 #network {
@@ -43,9 +43,3 @@
   padding-right: 7px;
   margin-left: 10px;
 }
-
-
-
-
-
-  
