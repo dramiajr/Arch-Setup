@@ -20,6 +20,22 @@ if [ ! -f "$WALLPAPER" ]; then
     exit 1
 fi
 
+#######
+# Rofi:
+#######
+
+# Copy wallpaper image to Rofi Directory
+ROFI_DIR="$HOME/.config/rofi"
+IMAGE="image.jpg"
+UPDATE_ROFI="$HOME/.config/rofi/$IMAGE"
+
+if [ -d $ROFI_DIR ]; then
+    sudo cp $WALLPAPER $UPDATE_ROFI
+    echo "Rofi Image Updated"
+else
+    echo "Rofi Directory Not Found: $ROFI_DIR"
+fi 
+
 #################
 # Applying Pywal:
 #################
