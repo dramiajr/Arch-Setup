@@ -12,7 +12,6 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-# Convert to absolute file path
 WALLPAPER=$(realpath "$1")
 
 # Check if image exsist
@@ -20,6 +19,55 @@ if [ ! -f "$WALLPAPER" ]; then
     echo "File not found: $WALLPAPER"
     exit 1
 fi
+
+#################
+# Applying Pywal:
+#################
+
+# Generate color theme
+wal -i $WALLPAPER
+
+##################
+# Hyprland Border:
+##################
+
+HYPRLAND_CONF="$HOME/.config/hypr/hyprland.conf"
+
+# Get color from pywal
+COLOR1=$(sed -n 6p ~/.cache/wal/colors)
+
+# Convert to rgba format
+C1="rgba(${COLOR1:1}ee)"
+
+BORDER="$C1"
+
+if [ -f "$HYPRLAND_CONF" ]; then
+    sed -i -E "s|^\s*(col\.active_border\s*=).*|\1 $BORDER|" $HYPRLAND_CONF
+    hyprctl reload
+    echo "Window Border Updated"
+else
+    echo "Hyprland Config Not Found: $HYPRLAND_CONF"
+fi
+
+########
+# Kitty:
+########
+
+# Reload Kitty color scheme
+if pgrep -x kitty > /dev/null; then
+    # IMPORTANT: Make sure ~/.cache/wal/colors-kitty.conf 
+    # is already added to your ~/.config/kitty/kitty.conf
+    kitty @ set-colors --all ~/.cache/wal/colors-kitty.conf
+    echo "Terminal Colors Updated"
+fi
+
+#########
+# Waybar:
+#########
+
+# Set to respective paths
+pkill waybar && hyprctl dispatch exec "waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css" > /dev/null 2>&1
+echo "Waybar Reloaded"
 
 ############################
 # Set SDDM Background Image:
@@ -31,11 +79,19 @@ LOGIN_IMAGE="login_image.jpg"
 BACKGROUNDS_PATH="/usr/share/sddm/themes/Sugar-Candy/Backgrounds/$LOGIN_IMAGE"
 CONF_FILE="/usr/share/sddm/themes/Sugar-Candy/theme.conf"
 
+# Grab Pywal Colors
+MAIN_COLOR=$(sed -n 4p ~/.cache/wal/colors)
+BACKGROUND_COLOR=$(head -n 1 ~/.cache/wal/colors)
+ACCENT_COLOR=$(sed -n 6p ~/.cache/wal/colors)
+
 if [ -d "$THEME_DIR" ]; then
     sudo cp $WALLPAPER $BACKGROUNDS_PATH
     if [ -f "$CONF_FILE" ]; then
         sed -i 's|^Background="Backgrounds/"|Background="Backgrounds/login_image.jpg"|' $CONF_FILE
-        echo "Login Image Changed"
+        sed -i "s|^MainColor=|MainColor=$MAIN_COLOR|" $CONF_FILE
+        sed -i "s|^AccentColor=|AccentColor=$ACCENT_COLOR|" $CONF_FILE 
+        sed -i "s|^BackgroundColor=|BackgroundColor=$BACKGROUND_COLOR|" $CONF_FILE 
+        echo "SDDM Updated"
     else
         echo "Configuration File Not Found: $CONF_FILE"
     fi
@@ -73,33 +129,6 @@ if [ -f "$HYPRLOCK_CONF" ]; then
 else
     echo "Hyprlock Config Not Found: $HYPRLOCK_CONF"
 fi
-
-####################
-# Pywal Integration:
-####################
-
-# Generate color theme
-wal -i $WALLPAPER
-
-#################
-# Apply to Kitty:
-#################
-
-# Reload Kitty color scheme
-if pgrep -x kitty > /dev/null; then
-    # IMPORTANT: Make sure ~/.cache/wal/colors-kitty.conf 
-    # is already added to your ~/.config/kitty/kitty.conf
-    kitty @ set-colors --all ~/.cache/wal/colors-kitty.conf
-    echo "Terminal Colors Updated"
-fi
-
-##################
-# Apply to Waybar:
-##################
-
-# Set to respective paths
-pkill waybar && hyprctl dispatch exec "waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css" > /dev/null 2>&1
-echo "Waybar Reloaded"
 
 ############
 # Finished #
