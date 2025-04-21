@@ -1,20 +1,17 @@
-
 configuration {
-    display-drun: "Applications";
     drun-display-format: "{icon} {name}";
     modi: "drun";
     font: "JetBrainsMonoNL Nerd Font 20";
     show-icons: true;
     location: 0;
-    width: 50%;
 }
 
 @theme "~/.cache/wal/colors-rofi-dark.rasi"
 
 window {
-    width: 60%;
-    height: 50%;
-    border: 0;
+    width: 61%;
+    height: 46%;
+    border: 0px;
     background-color: transparent;
     location: center;
 }
@@ -27,20 +24,18 @@ mainbox {
 leftbox {
     orientation: vertical;
     children: [ "inputbar", "imagebox" ];
-    width: 60%;
 }
 
 inputbar {
-    padding: 10px;
-    spacing: 5px;
+    padding: 0px;
+    spacing: 10px;
     children: [ "prompt", "entry" ];
+}
+
+prompt {
+    @textbox: {Search:};
 }
 
 imagebox {
     background-image: url("image.jpg");
-    width: 854px;
-    height: 100%;
-    border: 0px;
-    margin: 0px;
-    padding: 0px;
 }
