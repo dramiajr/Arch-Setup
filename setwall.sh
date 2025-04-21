@@ -27,6 +27,36 @@ fi
 # Generate color theme
 wal -i $WALLPAPER
 
+############################
+# Set SDDM Background Image:
+############################
+
+# Set to theme and respective path used
+THEME_DIR="/usr/share/sddm/themes/Sugar-Candy/Backgrounds"
+LOGIN_IMAGE="login_image.jpg"
+BACKGROUNDS_PATH="/usr/share/sddm/themes/Sugar-Candy/Backgrounds/$LOGIN_IMAGE"
+CONF_FILE="/usr/share/sddm/themes/Sugar-Candy/theme.conf"
+
+# Grab Pywal Colors
+MAIN_COLOR=$(sed -n 16p ~/.cache/wal/colors)
+BACKGROUND_COLOR=$(sed -n 1p ~/.cache/wal/colors)
+ACCENT_COLOR=$(sed -n 6p ~/.cache/wal/colors)
+
+if [ -d "$THEME_DIR" ]; then
+    sudo cp $WALLPAPER $BACKGROUNDS_PATH
+    if [ -f "$CONF_FILE" ]; then
+        sed -i 's|^Background="Backgrounds/"|Background="Backgrounds/login_image.jpg"|' $CONF_FILE
+        sed -i "s|^MainColor=.*|MainColor=$MAIN_COLOR|" $CONF_FILE
+        sed -i "s|^AccentColor=.*|AccentColor=$ACCENT_COLOR|" $CONF_FILE 
+        sed -i "s|^BackgroundColor=.*|BackgroundColor=$BACKGROUND_COLOR|" $CONF_FILE 
+        echo "SDDM Updated"
+    else
+        echo "Configuration File Not Found: $CONF_FILE"
+    fi
+else 
+    echo "Theme Directory Not Found: $THEME_DIR"
+fi
+
 ##################
 # Hyprland Border:
 ##################
@@ -44,7 +74,7 @@ BORDER="$C1"
 if [ -f "$HYPRLAND_CONF" ]; then
     sed -i -E "s|^\s*(col\.active_border\s*=).*|\1 $BORDER|" $HYPRLAND_CONF
     hyprctl reload
-    echo "Window Border Updated"
+    echo "Hyprland Updated"
 else
     echo "Hyprland Config Not Found: $HYPRLAND_CONF"
 fi
@@ -68,36 +98,6 @@ fi
 # Set to respective paths
 pkill waybar && hyprctl dispatch exec "waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css" > /dev/null 2>&1
 echo "Waybar Reloaded"
-
-############################
-# Set SDDM Background Image:
-############################
-
-# Set to theme and respective path used
-THEME_DIR="/usr/share/sddm/themes/Sugar-Candy/Backgrounds"
-LOGIN_IMAGE="login_image.jpg"
-BACKGROUNDS_PATH="/usr/share/sddm/themes/Sugar-Candy/Backgrounds/$LOGIN_IMAGE"
-CONF_FILE="/usr/share/sddm/themes/Sugar-Candy/theme.conf"
-
-# Grab Pywal Colors
-MAIN_COLOR=$(sed -n 4p ~/.cache/wal/colors)
-BACKGROUND_COLOR=$(head -n 1 ~/.cache/wal/colors)
-ACCENT_COLOR=$(sed -n 6p ~/.cache/wal/colors)
-
-if [ -d "$THEME_DIR" ]; then
-    sudo cp $WALLPAPER $BACKGROUNDS_PATH
-    if [ -f "$CONF_FILE" ]; then
-        sed -i 's|^Background="Backgrounds/"|Background="Backgrounds/login_image.jpg"|' $CONF_FILE
-        sed -i "s|^MainColor=|MainColor=$MAIN_COLOR|" $CONF_FILE
-        sed -i "s|^AccentColor=|AccentColor=$ACCENT_COLOR|" $CONF_FILE 
-        sed -i "s|^BackgroundColor=|BackgroundColor=$BACKGROUND_COLOR|" $CONF_FILE 
-        echo "SDDM Updated"
-    else
-        echo "Configuration File Not Found: $CONF_FILE"
-    fi
-else 
-    echo "Theme Directory Not Found: $THEME_DIR"
-fi
 
 ######################
 # Set Hyprpaper Image:
