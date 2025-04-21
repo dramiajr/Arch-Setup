@@ -1,0 +1,9 @@
+configuration {
+    display-drun: "Applications";
+    drun-display-format: "{icon} {name}";
+    modi: "drun";
+    font: "JetBrainsMonoNL Nerd Font Large 20";
+    show-icons: true;
+}
+
+@theme "/dev/null"
