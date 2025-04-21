@@ -21,10 +21,26 @@ window {
 
 mainbox {
     orientation: horizontal;
-    children: [ "imagebox", "inputbar", "listview" ];
+    children: [ "leftbox", "listview" ];
 }
- imagebox {
+
+leftbox {
+    orientation: vertical;
+    children: [ "inputbar", "imagebox" ];
+    width: 60%;
+}
+
+inputbar {
+    padding: 10px;
+    spacing: 5px;
+    children: [ "prompt", "entry" ];
+}
+
+imagebox {
     background-image: url("image.jpg");
-    width: 300px;
-    height: 100px;
- }
+    width: 854px;
+    height: 100%;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
