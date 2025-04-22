@@ -22,7 +22,7 @@
 
 - [Rofi](https://github.com/dramiajr/Arch-Setup/tree/main/rofi) - Application launcher, styled to match with Pywal
 
-- [Desktop Theming Script](https://github.com/dramiajr/Arch-Setup/blob/main/setwall.sh) - Custom bash script:<br>
+- [Desktop Theming Script](https://github.com/dramiajr/Arch-Setup/blob/main/scripts/setwall) - Custom bash script:<br>
   Runs wal to generate a color scheme<br>
   Sets wallpaper across SDDM, Hyprpaper, and Hyprlock<br>
   Applies colors to Waybar, Rofi, Kitty, and other components   
