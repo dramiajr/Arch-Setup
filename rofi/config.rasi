@@ -13,7 +13,7 @@ configuration {
 }
 
 window {
-    width: 61%;
+    width: 55%;
     height: 40%;
     location: center; 
     padding: 10px;
@@ -45,7 +45,7 @@ prompt {
 }
 
 entry, element-text {
-    text-color: @foreground;
+    text-color: @selcted-active-background;
     vertical-align: 0.5;
 }
 
