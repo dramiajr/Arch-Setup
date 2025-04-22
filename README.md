@@ -25,6 +25,6 @@
 - [Desktop Theming Script](https://github.com/dramiajr/Arch-Setup/blob/main/setwall.sh) - Custom bash script:<br>
   Runs wal to generate a color scheme<br>
   Sets wallpaper across SDDM, Hyprpaper, and Hyprlock<br>
-  Applies colors to Waybar, Wofi, Kitty, and other components   
+  Applies colors to Waybar, Rofi, Kitty, and other components   
 
 Stay tuned for install instructions, dotfile symlinks, and improvements!
