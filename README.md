@@ -20,7 +20,7 @@
    
 - [Waybar](https://github.com/dramiajr/Arch-/tree/main/waybar) - Top bar setup with integrated Pywal color sync
 
-- [Wofi](https://github.com/dramiajr/Arch-/tree/main/wofi) - Application launcher, styled to match with Pywal
+- [Rofi](https://github.com/dramiajr/Arch-Setup/tree/main/rofi) - Application launcher, styled to match with Pywal
 
 - [Desktop Theming Script](https://github.com/dramiajr/Arch-Setup/blob/main/setwall.sh) - Custom bash script:<br>
   Runs wal to generate a color scheme<br>
