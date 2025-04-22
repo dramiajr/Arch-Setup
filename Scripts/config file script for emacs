@@ -1,0 +1,29 @@
+DMEDITOR="emacsclient" -c -a emacs"
+
+declare -a options=(
+"bash - $HOME/.bashrc"
+"kitty - $HOME/.config/kitty/kitty.conf"
+"hyprland - $HOME/.config/hypr/hyprland.conf"
+"hyprpaper - $HOME/.config/hypr/hyprpaper.conf"
+"hypridle - $HOME/.config/hypr/hypridle.conf"
+"hyprlock - $HOME/.config/hypr/hyprlock.conf"
+"waybar - $HOME/.config/waybar/config"
+"waybar - $HOME/.config/waybar/modules.jsonc"
+"waybar - $HOME/.config/waybar/style.css"
+"rofi - $HOME/.config/rofi/config.rasi"
+"sddm - /usr/share/sddm/themes/Sugar-Candy/theme.conf"
+"quit"
+)
+
+choice=$(printf '%s\n' "${options[a]}" | dmenu -i -l 10 -p 'Edit config:')
+
+if [[ "$choice" == "quit" ]]; then
+    echo "Exit" && exit 1
+
+elif [ "$choice" ]; then
+    cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+    $DMEDITOR "cfg"
+
+else
+    echo "Exit" && exit 1
+fi
