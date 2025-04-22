@@ -14,8 +14,9 @@ configuration {
 
 window {
     width: 61%;
-    height: 46%;
-    location: center;
+    height: 40%;
+    location: center; 
+    padding: 10px;
 }
 
 mainbox {
@@ -51,10 +52,3 @@ entry, element-text {
 element-icon {
     size: 1.5em;
 }
-
-
-
-
-
-
-
