@@ -22,7 +22,7 @@ RESET_COL="\[$(tput sgr0)\]"
 # Dynamic prompt: 
 #################
 
-PS1="${USER_COL}[\u@${HOST_COL}\h${PATH_COL}\w${HOST_COL}\]${RESET_COL}\$"
+PS1="${USER_COL}[\u@${HOST_COL}\h ${PATH_COL}\w${HOST_COL}]${RESET_COL}\$ "
 
 #################
 # Shell behavior:
