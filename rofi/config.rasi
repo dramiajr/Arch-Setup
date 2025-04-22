@@ -1,5 +1,5 @@
 configuration {
-    display-drun: "";
+    display-drun: "";
     drun-display-format: "{icon} {name}";
     modi: "drun";
     show-icons: true;
@@ -9,7 +9,8 @@ configuration {
 @theme "~/.cache/wal/colors-rofi-dark.rasi"
 
 * {
-    font: "JetBrainsMonoNL Nerd Font 18";
+    font: "JetBrainsMonoNL Nerd Font 16";
+    text-color: @selected-normal-background;
 }
 
 window {
@@ -41,14 +42,29 @@ imagebox {
 
 prompt {
     padding: 10px;
-    placeholder: "";
 }
 
-entry, element-text {
-    text-color: @selcted-active-background;
+entry {
+    text-color: inherit;
     vertical-align: 0.5;
 }
 
 element-icon {
     size: 1.5em;
+}
+
+element {
+    padding: 5px;
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element selected {
+    background-color: @active-background;
+    text-color: @background;
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color: inherit;
 }
