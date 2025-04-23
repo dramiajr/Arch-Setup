@@ -42,9 +42,61 @@ install_yay_packages() {
   wlogout || error "Failed to install yay packages" 
 }
 
+copy_dotfiles() {
+  header "Copying dotfiles..."
+
+  # Hyprland configs
+  sudo  mkdir -p "$HOME/.config/hypr" && \
+  cp "$HOME/Arch-Setup/hypr/hyprpaper.conf" "$HOME/.config/hypr/hyprpaper.conf" && \
+  cp "$HOME/Arch-Setup/hypr/hyprland.conf" "$HOME/.config/hypr/hyprland.conf" && \
+  cp "$HOME/Arch-Setup/hypr/hypridle.conf" "$HOME/.config/hypr/hypridle.conf" && \
+  cp "$HOME/Arch-Setup/hypr/hyprlock.conf" "$HOME/.config/hypr/hyprlock.conf"
+
+  # Rofi config
+  sudo mkdir -p "$HOME/.config/rofi" && \
+  cp "$HOME/Arch-Setup/rofi/config.rasi" "$HOME/.config/rofi/config.rasi"
+
+  # Waybar configs
+  sudo mkdir -p "$HOME/.config/waybar" && \
+  cp "$HOME/Arch-Setup/waybar/config" "$HOME/.config/waybar/config" && \
+  cp "$HOME/Arch-Setup/waybar/modules.jsonc" "$HOME/.config/waybar/modules.jsonc" && \
+  cp "$HOME/Arch-Setup/waybar/style.css" "$HOME/.config/waybar/style.css" && \
+  cp "$HOME/Arch-Setup/waybar/cleanconfig.jsonc" "$HOME/.config/waybar/config.jsonc"
+
+  # Scripts
+  sudo mkdir -p "$HOME/Scripts" && \
+  cp -r "$HOME/Arch-Setup/scripts/"* "$HOME/Scripts/"
+
+  header "Dotfiles copied successfully!"
+}
+
+update_monitor_name() {
+  
+  # Detect the primary monitor name using xrandr
+  monitor_name=$(xrandr --listmonitors | grep -oP '^\S+' | head -n 1)
+
+  if [[ -n "$monitor_name" ]]; then
+    # Replace the old monitor name (HDMI-A-1) in hyprland.conf with the new one
+    sed -i "s/HDMI-A-1/$monitor_name/g" "$HOME/.config/hypr/hyprland.conf"
+    echo "Monitor name updated to $monitor_name in hyprland.conf and hyprpaper.conf"
+  else
+    echo "[!] Unable to detect monitor name"
+  fi
+}
+
+
+
+
+
+
+
+
+
+
 # Run Functions
 install_packages
 install_yay
 install_yay_packages
-
+copy_dotfiles
+update_monitor_name
 
