@@ -2,8 +2,6 @@
 
 # Installation Script 
 
-repo="https://github.com/dramiajr/Arch-Setup.git"
-
 error() {
   echo "[!] $1" >&2
   exit 1
@@ -18,15 +16,12 @@ install_packages() {
   sudo pacman -Syu --noconfirm || error "System update failed"
   sudo pacman -S --noconfirm \
     hyprland hyprpaper hypridle hyprlock \
-    waybar kitty rofi emacs wlogout \
-    python-pywal imagemagick \
+    waybar kitty rofi emacs wlogout sddm \
+    python-pywal yay imagemagick base-devel \
     xdg-desktop-portal-hyprland \
-    unzip wget base-devel \
     noto-fonts ttf-jetbrains-mono-nerd ttf-font-awesome \
     xdg-user-dirs xdg-utils || error "Package install failed"
 }
 
-clone_dotfiles() {
-  header "Cloning dotfiles..."
-  git clone --depth 1 "$repo" "$HOME/arch-setup" || error "Git clone failed"
-}
+
+
