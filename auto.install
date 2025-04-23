@@ -23,5 +23,7 @@ install_packages() {
     xdg-user-dirs xdg-utils || error "Package install failed"
 }
 
+# Run Functions
+install_packages
 
 
