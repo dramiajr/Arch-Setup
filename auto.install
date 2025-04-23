@@ -16,7 +16,7 @@ install_packages() {
   sudo pacman -Syu --noconfirm || error "System update failed"
   sudo pacman -S --noconfirm \
     hyprland hyprpaper hypridle hyprlock \
-    waybar kitty rofi emacs wlogout sddm \
+    waybar kitty rofi emacs sddm \
     python-pywal imagemagick base-devel \
     xdg-desktop-portal-hyprland \
     noto-fonts ttf-jetbrains-mono-nerd ttf-font-awesome \
