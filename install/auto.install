@@ -84,14 +84,43 @@ update_monitor_name() {
   fi
 }
 
+# Create kitty.conf with required settings
+create_kitty_conf() {
+  header "Creating kitty.conf..."
 
+  # Create the kitty.conf file and add the necessary settings
+  cat <<EOF > "$HOME/.config/kitty/kitty.conf"
+# Include Pywal colors
+include ~/.cache/wal/colors-kitty.conf
 
+# Font settings
+font_size 18
+font_family JetBrainsMono Nerd Font
+EOF
 
+  echo "kitty.conf created/updated successfully!"
+}
 
+set_wallpaper() {
+  header "Setting wallpaper..."
 
+  # Copy the wallpaper to the Pictures directory
+  cp "$HOME/Arch-Setup/install/wallpaper4install.jpg" "$HOME/Pictures/mountain.jpg" || error "Failed to copy wallpaper"
 
+  # Path to hyprpaper.conf and the wallpaper location
+  hyprpaper_conf="$HOME/.config/hypr/hyprpaper.conf"
+  wallpaper_path="$HOME/Pictures/mountain.jpg"
 
-
+  # Check if hyprpaper.conf exists
+  if [ -f "$hyprpaper_conf" ]; then
+    # Update or add preload and wallpaper lines
+    sed -i "s|^preload=.*|preload=$wallpaper_path|" "$hyprpaper_conf" 
+    sed -i "s|^wallpaper=.*|wallpaper=, $wallpaper_path|" "$hyprpaper_conf" 
+    echo "Wallpaper Set"
+  else
+    error "$hyprpaper_conf not found!"
+  fi
+}
 
 # Run Functions
 install_packages
@@ -99,4 +128,6 @@ install_yay
 install_yay_packages
 copy_dotfiles
 update_monitor_name
+create_kitty_conf
+set_wallpaper
 
