@@ -35,9 +35,11 @@ install_yay() {
   fi
 }
 
-install_sddm_theme() {
+install_yay_packages() {
   header "Installing Sugar Candy SDDM Theme..."
-  yay -S --noconfirm sddm-theme-sugar-candy-git || error "Failed to install SDDM theme"
+  yay -S --noconfirm \
+  sddm-theme-sugar-candy-git \
+  wlogout || error "Failed to install yay packages" 
 }
 
 # Run Functions
