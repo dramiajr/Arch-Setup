@@ -45,6 +45,6 @@ install_yay_packages() {
 # Run Functions
 install_packages
 install_yay
-install_sddm_theme
+install_yay_packages
 
 
