@@ -22,7 +22,7 @@ if [[ "$choice" == "quit" ]]; then
 
 elif [ "$choice" ]; then
     cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
-    $DMEDITOR "cfg"
+    $DMEDITOR "$cfg"
 
 else
     echo "Exit" && exit 1
