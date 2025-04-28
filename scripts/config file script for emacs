@@ -1,4 +1,4 @@
-DMEDITOR="emacsclient" -c -a emacs"
+DMEDITOR="emacsclient -c -a emacs"
 
 declare -a options=(
 "bash - $HOME/.bashrc"
@@ -15,7 +15,7 @@ declare -a options=(
 "quit"
 )
 
-choice=$(printf '%s\n' "${options[a]}" | dmenu -i -l 10 -p 'Edit config:')
+choice=$(printf '%s\n' "${options[a]}" | rodi -dmenu -i -l 10 -p 'Edit config:')
 
 if [[ "$choice" == "quit" ]]; then
     echo "Exit" && exit 1
