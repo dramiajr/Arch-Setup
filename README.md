@@ -1,6 +1,6 @@
 # Arch Linux Styling Configs & Files
 
-#### These is my personal styling setup for Arch Linux. My goal was to keep it somewhat minimal and incorporate a unified aesthetic across diffrent desktop components. Enjoy!
+#### These are my personal styling setup for Arch Linux. My goal was to keep it somewhat minimal and incorporate a unified aesthetic across diffrent desktop components. Enjoy!
 
 
 ## Desktop Preview
